@@ -1,0 +1,34 @@
+#include<iostream>
+#include<queue>
+using namespace std;
+
+int main ()
+{
+    int n, ans = 0;
+    long long s, curr = 0, num;
+    cin >> n >> s;
+    queue<long long> q;
+    for(int i = 0; i < n; )
+    {
+        if(curr < s)
+        {
+            cin >> num;
+            ++i;
+            curr += num;
+            q.push(num);
+        }
+        if(curr == s)
+        {
+            ++ans;
+            curr -= q.front();
+            q.pop();
+        }
+        if(curr > s)
+        {
+            curr -= q.front();
+            q.pop();
+        }
+    }
+    cout << ans << endl;
+    return 0;
+}
